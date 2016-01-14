@@ -51,21 +51,27 @@
   2  * * *
   3  192.168.18.136 (192.168.18.136)  304.143 ms  305.126 ms  306.252 ms
   ```
-
-ping -s 1000 192.168.18.136
-PING 192.168.18.136 (192.168.18.136) 1000(1028) bytes of data.
-From 192.168.17.1 icmp_seq=1 Frag needed and DF set (mtu = 786)
-1008 bytes from 192.168.18.136: icmp_seq=2 ttl=62 time=287 ms
-1008 bytes from 192.168.18.136: icmp_seq=3 ttl=62 time=288 ms
-1008 bytes from 192.168.18.136: icmp_seq=4 ttl=62 time=287 ms
-1008 bytes from 192.168.18.136: icmp_seq=5 ttl=62 time=287 ms
-1008 bytes from 192.168.18.136: icmp_seq=6 ttl=62 time=287 ms
-1008 bytes from 192.168.18.136: icmp_seq=7 ttl=62 time=287 ms
-1008 bytes from 192.168.18.136: icmp_seq=8 ttl=62 time=287 ms
-^C
---- 192.168.18.136 ping statistics ---
-8 packets transmitted, 7 received, +1 errors, 12% packet loss, time 7008ms
-rtt min/avg/max/mdev = 287.060/287.389/288.228/0.470 ms
-
+  * send via ISDN 1000 Byte big packages e.g. via ```ping -s 1000 192.168.18.136```
+    * -s is the size in bytes of a package sent
+  * returns
+  ``` bash
+  ping -s 1000 192.168.18.136
+  PING 192.168.18.136 (192.168.18.136) 1000(1028) bytes of data.
+  From 192.168.17.1 icmp_seq=1 Frag needed and DF set (mtu = 786)
+  1008 bytes from 192.168.18.136: icmp_seq=2 ttl=62 time=287 ms
+  1008 bytes from 192.168.18.136: icmp_seq=3 ttl=62 time=288 ms
+  1008 bytes from 192.168.18.136: icmp_seq=4 ttl=62 time=287 ms
+  1008 bytes from 192.168.18.136: icmp_seq=5 ttl=62 time=287 ms
+  1008 bytes from 192.168.18.136: icmp_seq=6 ttl=62 time=287 ms
+  1008 bytes from 192.168.18.136: icmp_seq=7 ttl=62 time=287 ms
+  1008 bytes from 192.168.18.136: icmp_seq=8 ttl=62 time=287 ms
+  ^C
+  --- 192.168.18.136 ping statistics ---
+  8 packets transmitted, 7 received, +1 errors, 12% packet loss, time 7008ms
+  rtt min/avg/max/mdev = 287.060/287.389/288.228/0.470 ms
+  ```
+    * "Frag needed and DF set" means Fragmentation needes but DF (flag, "Don't fragment") is set => problem...
+    * "(mtu = 786)" means the maximum trasmission unit is 786 byte (from ISDN), so every package bigger than that needs to be fragmented
+    * due to this 12% package loss BUT next time the operating system knows this and fragmentates in advance for this specific IP
 
 * __Task B__: route via router only
