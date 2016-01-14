@@ -31,14 +31,14 @@
       * Router: 192.168.17.2 our port (lab26), 192.168.18.2 port of other subnet AND 172.16.1.140 as port for both subnets (lab33)
     * ethX = name of subnet
     * last part = our IP address in particular subnet
-  * Add a static host route on Linux:
-  ``` bash
-  route add -host <destination IP address> gw <gateway IP address>    
-  ```
-  or
-  ``` bash
-  route add <destination IP address> gw <gateway IP address>
-  ```
+
 * __Task A__: route via ISDN only
-  
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         141.22.26.1     0.0.0.0         UG    0      0        0 eth0
+cpt.haw-hamburg *               255.255.254.0   U     0      0        0 eth0
+172.16.1.0      *               255.255.255.0   U     0      0        0 eth2
+192.168.17.0    *               255.255.255.0   U     0      0        0 eth1
+192.168.18.136  192.168.17.1    255.255.255.255 UGH   0      0        0 eth1
+
 * __Task B__: route via router only
