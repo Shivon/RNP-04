@@ -31,6 +31,14 @@
       * Router: 192.168.17.2 our port, 192.168.18.2 port of other subnet AND 172.16.1.140 as port for both subnets
     * ethX = name of subnet
     * last part = our IP address in particular subnet
-
+  * Add a static host route on Linux:
+  ``` bash
+  route add -host <destination IP address> gw <gateway IP address>    
+  ```
+  or
+  ``` bash
+  route add <destination IP address> gw <gateway IP address>
+  ```
 * __Task A__: route via ISDN only
+  
 * __Task B__: route via router only
