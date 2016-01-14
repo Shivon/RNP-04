@@ -45,6 +45,10 @@
   ```
   * after routing now ```/usr/sbin/traceroute 192.168.18.136``` returns
   ``` bash
-  Kernel IP routing table
+  networker@lab26:/mnt/fileserver/MyHome/win7/Git/RNP-04/routing> /usr/sbin/traceroute 192.168.18.136
+  traceroute to 192.168.18.136 (192.168.18.136), 30 hops max, 60 byte packets
+  1  192.168.17.1 (192.168.17.1)  118.728 ms  120.254 ms  121.714 ms
+  2  * * *
+  3  192.168.18.136 (192.168.18.136)  304.143 ms  305.126 ms  306.252 ms
   ```
 * __Task B__: route via router only
