@@ -27,8 +27,8 @@
     192.168.17.0/24 dev eth1  proto kernel  scope link  src 192.168.17.14
     ```
     * first part = subnets where our computer is connected to => here we'll find the gateway to ISDN/ router
-      * ISDN: 192.168.17.1 our port, 192.168.18.1 port of other subnet
-      * Router: 192.168.17.2 our port, 192.168.18.2 port of other subnet AND 172.16.1.140 as port for both subnets
+      * ISDN: 192.168.17.1 our port (lab26), 192.168.18.1 port of other subnet (lab33)
+      * Router: 192.168.17.2 our port (lab26), 192.168.18.2 port of other subnet AND 172.16.1.140 as port for both subnets (lab33)
     * ethX = name of subnet
     * last part = our IP address in particular subnet
   * Add a static host route on Linux:
