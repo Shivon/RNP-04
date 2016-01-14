@@ -33,12 +33,18 @@
     * last part = our IP address in particular subnet
 
 * __Task A__: route via ISDN only
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-default         141.22.26.1     0.0.0.0         UG    0      0        0 eth0
-cpt.haw-hamburg *               255.255.254.0   U     0      0        0 eth0
-172.16.1.0      *               255.255.255.0   U     0      0        0 eth2
-192.168.17.0    *               255.255.255.0   U     0      0        0 eth1
-192.168.18.136  192.168.17.1    255.255.255.255 UGH   0      0        0 eth1
-
+  * after routing now ```/sbin/route``` returns
+  ``` bash
+  Kernel IP routing table
+  Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+  default         141.22.26.1     0.0.0.0         UG    0      0        0 eth0
+  cpt.haw-hamburg *               255.255.254.0   U     0      0        0 eth0
+  172.16.1.0      *               255.255.255.0   U     0      0        0 eth2
+  192.168.17.0    *               255.255.255.0   U     0      0        0 eth1
+  192.168.18.136  192.168.17.1    255.255.255.255 UGH   0      0        0 eth1
+  ```
+  * after routing now ```/usr/sbin/traceroute 192.168.18.136``` returns
+  ``` bash
+  Kernel IP routing table
+  ```
 * __Task B__: route via router only
