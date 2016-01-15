@@ -75,3 +75,72 @@
     * due to this 12% package loss BUT next time the operating system knows this and fragmentates in advance for this specific IP
 
 * __Task B__: route via router only
+
+``` bash
+networker@lab33:~> /sbin/ifconfig
+eth1      Link encap:Ethernet  HWaddr 00:1B:21:40:E6:B4
+          inet addr:192.168.18.136  Bcast:192.168.18.255  Mask:255.255.255.0
+
+          inet6 addr: fd32:6de0:1f69:18:c1dd:ca13:c0de:51b/64 Scope:Global
+
+          inet6 addr: fd32:6de0:1f69:18:21b:21ff:fe40:e6b4/64 Scope:Global
+          inet6 addr: fe80::21b:21ff:fe40:e6b4/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:144 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:84 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:17309 (16.9 Kb)  TX bytes:16501 (16.1 Kb)
+          Memory:f7c20000-f7c3ffff
+
+networker@lab26:/mnt/fileserver/MyHome/win7/Git/RNP-04/routing> /sbin/ifconfig
+eth1      Link encap:Ethernet  HWaddr 00:1B:21:40:E7:FC
+          inet addr:192.168.17.14  Bcast:192.168.17.255  Mask:255.255.255.0
+          inet6 addr: fd32:6de0:1f69:17:3593:a373:78a1:67ca/64 Scope:Global
+          inet6 addr: fe80::21b:21ff:fe40:e7fc/64 Scope:Link
+
+          inet6 addr: fd32:6de0:1f69:17:21b:21ff:fe40:e7fc/64 Scope:Global
+
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:148 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:85 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:13340 (13.0 Kb)  TX bytes:16634 (16.2 Kb)
+          Memory:f7c20000-f7c3ffff
+```
+lab33 ipv6 address = fd32:6de0:1f69:18:c1dd:ca13:c0de:51b
+lab26 ipv6 address = fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
+
+lab26:
+``` bash
+networker@lab26:/mnt/fileserver/MyHome/win7/Git/RNP-04/routing> ping6 fd32:6de0:1f69:18:21b:21ff:fe40:e6b4
+PING fd32:6de0:1f69:18:21b:21ff:fe40:e6b4(fd32:6de0:1f69:18:21b:21ff:fe40:e6b4) 56 data bytes
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=1 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=2 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=3 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=4 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=5 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=6 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=7 Destination unreachable: Address unreachable
+From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=8 Destination unreachable: Address unreachable
+^C
+--- fd32:6de0:1f69:18:21b:21ff:fe40:e6b4 ping statistics ---
+9 packets transmitted, 0 received, +8 errors, 100% packet loss, time 8000ms
+```
+lab33
+``` bash
+networker@lab33:~> ping6 fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
+PING fd32:6de0:1f69:17:21b:21ff:fe40:e7fc(fd32:6de0:1f69:17:21b:21ff:fe40:e7fc) 56 data bytes
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=1 ttl=63 time=0.523 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=2 ttl=63 time=0.344 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=3 ttl=63 time=0.338 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=4 ttl=63 time=0.390 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=5 ttl=63 time=0.367 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=6 ttl=63 time=0.347 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=7 ttl=63 time=0.341 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=8 ttl=63 time=0.367 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=9 ttl=63 time=0.363 ms
+64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=10 ttl=63 time=0.345 ms
+^C
+--- fd32:6de0:1f69:17:21b:21ff:fe40:e7fc ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9000ms
+```
