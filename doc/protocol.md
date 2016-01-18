@@ -3,10 +3,10 @@
 * __Result__: not possible because another process is listening on it (PID 1972 / Program name rn10server)
 
 ### Part 3
+* IMPORTANT: NOT banning within the network but from/ to the network
 
 ### Part 4
-
-* __Gerenal helpful stuff__:
+* __General helpful stuff__:
   * show current routing table: ```/sbin/route```
     * returns
      ``` bash
@@ -70,11 +70,12 @@
   8 packets transmitted, 7 received, +1 errors, 12% packet loss, time 7008ms
   rtt min/avg/max/mdev = 287.060/287.389/288.228/0.470 ms
   ```
-    * "Frag needed and DF set" means Fragmentation needes but DF (flag, "Don't fragment") is set => problem...
-    * "(mtu = 786)" means the maximum trasmission unit is 786 byte (from ISDN), so every package bigger than that needs to be fragmented
-    * due to this 12% package loss BUT next time the operating system knows this and fragmentates in advance for this specific IP
+    * "Frag needed and DF set" means fragmentation needed but DF (flag, "Don't fragment") is set => problem...
+    * "(mtu = 786)" means the maximum transmission unit is 786 byte (from ISDN), so every package bigger than that needs to be fragmented
+    * due to this 12% package loss BUT next time the operating system knows this and fragments in advance for this specific IP
 
 * __Task B__: route via router only
+* getting the ipv6-address of the computers:
 
 ``` bash
 networker@lab33:~> /sbin/ifconfig
@@ -107,51 +108,53 @@ eth1      Link encap:Ethernet  HWaddr 00:1B:21:40:E7:FC
           RX bytes:13340 (13.0 Kb)  TX bytes:16634 (16.2 Kb)
           Memory:f7c20000-f7c3ffff
 ```
-lab33 ipv6 address = fd32:6de0:1f69:18:c1dd:ca13:c0de:51b
-lab26 ipv6 address = fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
 
-lab26:
-``` bash
-networker@lab26:/mnt/fileserver/MyHome/win7/Git/RNP-04/routing> ping6 fd32:6de0:1f69:18:21b:21ff:fe40:e6b4
-PING fd32:6de0:1f69:18:21b:21ff:fe40:e6b4(fd32:6de0:1f69:18:21b:21ff:fe40:e6b4) 56 data bytes
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=1 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=2 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=3 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=4 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=5 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=6 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=7 Destination unreachable: Address unreachable
-From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=8 Destination unreachable: Address unreachable
-^C
---- fd32:6de0:1f69:18:21b:21ff:fe40:e6b4 ping statistics ---
-9 packets transmitted, 0 received, +8 errors, 100% packet loss, time 8000ms
-```
-lab33
-``` bash
-networker@lab33:~> ping6 fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
-PING fd32:6de0:1f69:17:21b:21ff:fe40:e7fc(fd32:6de0:1f69:17:21b:21ff:fe40:e7fc) 56 data bytes
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=1 ttl=63 time=0.523 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=2 ttl=63 time=0.344 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=3 ttl=63 time=0.338 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=4 ttl=63 time=0.390 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=5 ttl=63 time=0.367 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=6 ttl=63 time=0.347 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=7 ttl=63 time=0.341 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=8 ttl=63 time=0.367 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=9 ttl=63 time=0.363 ms
-64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=10 ttl=63 time=0.345 ms
-^C
---- fd32:6de0:1f69:17:21b:21ff:fe40:e7fc ping statistics ---
-10 packets transmitted, 10 received, 0% packet loss, time 9000ms
-```
+* lab33 ipv6 address = fd32:6de0:1f69:18:c1dd:ca13:c0de:51b
+* lab26 ipv6 address = fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
+* after executing the shell script on both computers:
+  * lab26:
+  ``` bash
+  networker@lab26:/mnt/fileserver/MyHome/win7/Git/RNP-04/routing> ping6 fd32:6de0:1f69:18:21b:21ff:fe40:e6b4
+  PING fd32:6de0:1f69:18:21b:21ff:fe40:e6b4(fd32:6de0:1f69:18:21b:21ff:fe40:e6b4) 56 data bytes
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=1 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=2 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=3 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=4 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=5 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=6 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=7 Destination unreachable: Address unreachable
+  From fd32:6de0:1f69:17:3593:a373:78a1:67ca icmp_seq=8 Destination unreachable: Address unreachable
+  ^C
+  --- fd32:6de0:1f69:18:21b:21ff:fe40:e6b4 ping statistics ---
+  9 packets transmitted, 0 received, +8 errors, 100% packet loss, time 8000ms
+  ```
+  * lab33:
+  ``` bash
+  networker@lab33:~> ping6 fd32:6de0:1f69:17:21b:21ff:fe40:e7fc
+  PING fd32:6de0:1f69:17:21b:21ff:fe40:e7fc(fd32:6de0:1f69:17:21b:21ff:fe40:e7fc) 56 data bytes
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=1 ttl=63 time=0.523 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=2 ttl=63 time=0.344 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=3 ttl=63 time=0.338 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=4 ttl=63 time=0.390 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=5 ttl=63 time=0.367 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=6 ttl=63 time=0.347 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=7 ttl=63 time=0.341 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=8 ttl=63 time=0.367 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=9 ttl=63 time=0.363 ms
+  64 bytes from fd32:6de0:1f69:17:21b:21ff:fe40:e7fc: icmp_seq=10 ttl=63 time=0.345 ms
+  ^C
+  --- fd32:6de0:1f69:17:21b:21ff:fe40:e7fc ping statistics ---
+  10 packets transmitted, 10 received, 0% packet loss, time 9000ms
+  ```
 
 ### Part 5
-on lab23
-filter: host 141.22.27.102 or host 192.168.17.13 or host 172.16.1.4
-a & b see .png
-c) 
-When you add the rule, DNS looks up the ip address of the given url (dmi.dk). It then adds the rule with the ip address hardcoded hence when the ip address changes, the website cannnot be accessed anymore (like all other website due to the ban of outgoing requests).
-
+(this time on on lab23)
+* filter for sniffing: ```host 141.22.27.102 or host 192.168.17.13 or host 172.16.1.4```
+* http requests without firewalling: ![before firewalling a](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt1.png) ![before firewalling b](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt2.png)
+* http requests after executing the shell script: ![after firewalling](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5b.png)
+* solution for 5c):    
+When you add the rule, DNS looks up the IP address of the given URL (dmi.dk). It then adds the rule with the IP address(es) hardcoded hence when the IP address changes, the website cannot be accessed anymore (like all other website due to the ban of outgoing requests).    
+Rules for output chain:    
 ``` bash
 networker@lab23:/mnt/fileserver/MyHome/win7/Git/RNP-04/advanced_sniffing_and_firewalling> sudo /usr/sbin/iptables -L
 Chain OUTPUT (policy ACCEPT)
