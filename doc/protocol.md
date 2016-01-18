@@ -3,7 +3,8 @@
 * __Result__: not possible because another process is listening on it (PID 1972 / Program name rn10server)
 
 ### Part 3
-* IMPORTANT: NOT banning within the network but from/ to the network
+* important note: don't ban __within__ the network but __from__/ __to__ the network
+* please look at the [shell scripts](https://github.com/Shivon/RNP-04/tree/master/firewalling) for further information
 
 ### Part 4
 * __General helpful stuff__:
@@ -150,8 +151,8 @@ eth1      Link encap:Ethernet  HWaddr 00:1B:21:40:E7:FC
 ### Part 5
 (this time on on lab23)
 * filter for sniffing: ```host 141.22.27.102 or host 192.168.17.13 or host 172.16.1.4```
-* http requests without firewalling: ![before firewalling a](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt1.png) ![before firewalling b](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt2.png)
-* http requests after executing the shell script: ![after firewalling](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5b.png)
+* HTTP requests without firewalling: ![before firewalling a](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt1.png) ![before firewalling b](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5a_pt2.png)
+* HTTP requests after executing the shell script: ![after firewalling](https://github.com/Shivon/RNP-04/blob/master/advanced_sniffing_and_firewalling/snapshot_5b.png)
 * solution for 5c):    
 When you add the rule, DNS looks up the IP address of the given URL (dmi.dk). It then adds the rule with the IP address(es) hardcoded hence when the IP address changes, the website cannot be accessed anymore (like all other website due to the ban of outgoing requests).    
 Rules for output chain:    
