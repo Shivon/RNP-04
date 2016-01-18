@@ -144,3 +144,35 @@ PING fd32:6de0:1f69:17:21b:21ff:fe40:e7fc(fd32:6de0:1f69:17:21b:21ff:fe40:e7fc) 
 --- fd32:6de0:1f69:17:21b:21ff:fe40:e7fc ping statistics ---
 10 packets transmitted, 10 received, 0% packet loss, time 9000ms
 ```
+
+### Part 5
+on lab23
+filter: host 141.22.27.102 or host 192.168.17.13 or host 172.16.1.4
+a & b see .png
+c) 
+When you add the rule, DNS looks up the ip address of the given url (dmi.dk). It then adds the rule with the ip address hardcoded hence when the ip address changes, the website cannnot be accessed anymore (like all other website due to the ban of outgoing requests).
+
+``` bash
+networker@lab23:/mnt/fileserver/MyHome/win7/Git/RNP-04/advanced_sniffing_and_firewalling> sudo /usr/sbin/iptables -L
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     tcp  --  anywhere             5.56.149.239         tcp dpt:http
+ACCEPT     tcp  --  anywhere             5.56.149.238         tcp dpt:http
+ACCEPT     tcp  --  anywhere             130.226.71.229       tcp dpt:http
+ACCEPT     tcp  --  anywhere             130.226.71.226       tcp dpt:http
+REJECT     tcp  --  anywhere             anywhere             tcp dpt:http reject-with tcp-reset
+ACCEPT     all  --  anywhere             anywhere
+ACCEPT     all  --  anywhere             cpt.haw-hamburg.de/23
+ACCEPT     all  --  anywhere             cpt.haw-hamburg.de/23
+ACCEPT     all  --  anywhere             anywhere             state ESTABLISHED
+ACCEPT     all  --  anywhere             dns.is.haw-hamburg.de
+ACCEPT     all  --  anywhere             dns2.is.haw-hamburg.de
+ACCEPT     all  --  anywhere             dns3.is.haw-hamburg.de
+ACCEPT     all  --  anywhere             shell-14.informatik.haw-hamburg.de
+ACCEPT     all  --  anywhere             homefs.informatik.haw-hamburg.de
+ACCEPT     all  --  anywhere             filesrv.informatik.haw-hamburg.de
+ACCEPT     all  --  anywhere             ti-idm.informatik.haw-hamburg.de
+ACCEPT     all  --  anywhere             192.168.0.0/16
+ACCEPT     all  --  anywhere             172.16.1.0/24
+ACCEPT     all  --  anywhere             anywhere
+```
