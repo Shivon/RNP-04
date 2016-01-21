@@ -8,6 +8,9 @@
 
 ### Part 4
 * __General helpful stuff__:
+  * to __IPv6__:
+    * ```Scope: Global``` = IP address is globally valid and doesn't need to be translated
+    * ```Scope: Link``` = only valid in LAN, can't be routed from outside of LAN
   * show current routing table: ```/sbin/route```
     * returns
      ``` bash
@@ -27,9 +30,9 @@
     172.16.1.0/24 dev eth2  proto kernel  scope link  src 172.16.1.8
     192.168.17.0/24 dev eth1  proto kernel  scope link  src 192.168.17.14
     ```
-    * first part = subnets where our computer is connected to => here we'll find the gateway to ISDN/ router
-      * ISDN: 192.168.17.1 our port (lab26), 192.168.18.1 port of other subnet (lab33)
-      * Router: 192.168.17.2 our port (lab26), 192.168.18.2 port of other subnet AND 172.16.1.140 as port for both subnets (lab33)
+    * first part = subnets where our computer is connected to => here we'll find the interface to ISDN/ router
+      * ISDN: 192.168.17.1 (lab26), 192.168.18.1 (lab33)
+      * Router: 192.168.17.2 (lab26), 192.168.18.2 (lab33)
     * ethX = name of subnet
     * last part = our IP address in particular subnet
 
